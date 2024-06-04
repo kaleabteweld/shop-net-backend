@@ -50,6 +50,6 @@ userSchema.virtual('full_name').get(function () {
 
 userSchema.plugin<any>(mongooseErrorPlugin);
 
-const User = mongoose.model<IUser, UserModel>('User', userSchema);
+const UserModel = mongoose.model<IUser, UserModel>('User', userSchema);
 
-export default User;
+export default UserModel;

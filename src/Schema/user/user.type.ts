@@ -25,21 +25,19 @@ export interface IUser extends mongoose.Document {
 }
 
 export interface IUserMethods {
-}
-
-export interface IUserDocument extends IUser, IUserMethods, mongoose.Document {
     encryptPassword(this: IUser, password?: string): Promise<String>
     checkPassword(this: IUser, password: string): Promise<boolean>
-
 }
+
+export interface IUserDocument extends IUser, IUserMethods, mongoose.Document { }
 
 export interface UserModel extends mongoose.Model<IUserDocument> {
     validator<T>(userInput: T, schema: Joi.ObjectSchema<T>): Promise<any>
-    getUserByEmail(this: mongoose.Model<IUser>, email: string): Promise<IUser>
-    getUserById(this: mongoose.Model<IUser>, _id: string): Promise<IUser>
-    setStatus(this: mongoose.Model<IUser>, _id: string, status: TStatus): Promise<IUser | null>
-    update(this: mongoose.Model<IUser>, _id: string, newUser: IUserUpdateFrom, populatePath?: string | string[]): Promise<IUser | null>
-    removeByID(this: mongoose.Model<IUser>, _id: string): Promise<void>
+    getUserByEmail(email: string): Promise<IUserDocument>
+    getUserById(_id: string): Promise<IUserDocument>
+    setStatus(_id: string, status: TStatus): Promise<IUserDocument | null>
+    update(_id: string, newUser: IUserUpdateFrom, populatePath?: string | string[]): Promise<IUserDocument | null>
+    removeByID(_id: string): Promise<void>
 }
 
 export interface IUserLogInFrom {
@@ -52,7 +50,6 @@ export interface IUserSignUpFrom {
     password: string;
     first_name: string;
     last_name: string;
-    full_name: string;
     phone_number: string;
 }
 

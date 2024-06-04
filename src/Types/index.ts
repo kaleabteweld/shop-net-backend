@@ -1,10 +1,21 @@
-export enum UserType {
-    user = 'user',
-    organizer = 'organizer',
-    admin = 'admin',
+export interface IPagination {
+    skip?: number,
+    limit?: number,
 }
 
-export enum TokenType {
-    accessToken = "accessToken",
-    refreshToken = "refreshToken"
+export interface IResponseType<T> {
+    body: T
+}
+
+export interface IResponseWithHeaderType<T> {
+    body: T
+    header: {
+        accessToken: string
+        refreshToken: string
+    }
+}
+
+export interface IListResponseType<T> {
+    body: T,
+    pagination: IPagination
 }
