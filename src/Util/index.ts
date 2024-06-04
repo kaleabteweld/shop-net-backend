@@ -3,6 +3,7 @@ import { TokenType, UserType } from "../Types";
 import { errorResponse } from "../Types/error";
 import crypto from 'crypto';
 import { ValidationErrorFactory } from "../Types/error";
+import Joi from "joi";
 
 export function TokenSecret(userType: UserType, tokenType: TokenType) {
     if (tokenType == TokenType.accessToken) {
@@ -95,4 +96,26 @@ export function getEncryptedIdFromUrl(url: string): String {
         }, "id");
     }
     return lastSubstring;
+}
+
+export async function MakeValidator<T>(validator: Joi.ObjectSchema<T>, obj: T, optional?: Joi.ValidationOptions) {
+    const validationError: any = await validator.validate(obj, optional);
+    if (validationError.error != null) {
+
+        const _error = ValidationErrorFactory({
+            msg: validationError.error?.message,
+            statusCode: 400,
+            type: "validation",
+        }, cleanAttr(validationError.error?.message))
+        throw _error;
+    } else {
+        return validationError.value;
+    }
+}
+
+export function cleanAttr(errorMsg: string): string {
+    var attr: string = errorMsg.split(" ")[0];
+    attr = attr.replace('\"', "");
+    attr = attr.replace('\"', "");
+    return attr;
 }
