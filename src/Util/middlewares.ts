@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import Jwt from 'jsonwebtoken'
 import { TokenSecret } from ".";
-import { TokenType, UserType } from "../Types";
 import { errorFactory, errorResponse } from "../Types/error";
+import { TokenType, UserType } from "./jwt/jwt.types";
 
 
 
