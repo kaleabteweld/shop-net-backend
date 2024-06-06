@@ -1,7 +1,7 @@
 import { IUser, IUserLogInFrom, IUserSignUpFrom, IUserUpdateFrom } from "../../Schema/user/user.type";
 import UserModel from "../../Schema/user/user.schema";
 import { IResponseType, IResponseWithHeaderType } from "../../Types";
-import { MakeTokens, verifyAccessToken, verifyRefreshToken } from "../../Util/jwt";
+import { MakeTokens, removeRefreshToken, verifyAccessToken, verifyRefreshToken } from "../../Util/jwt";
 import { UserType } from "../../Util/jwt/jwt.types";
 import { userLogInSchema, userSignUpSchema, userUpdateSchema } from "../../Schema/user/user.validation";
 
@@ -40,7 +40,7 @@ export default class UserController {
 
     static async logOut(token: string): Promise<void> {
         const user = await verifyAccessToken<IUser>(token, UserType.user);
-        // await Cache.run(() => Cache.removeRefreshToken(user.id));
+        await removeRefreshToken(user.id);
     }
 
     static async update(_user: IUserUpdateFrom, userId: string): Promise<IResponseType<IUser | null>> {

@@ -97,3 +97,7 @@ export function makeAuthHeaders(res: Response, headers: { accessToken: string, r
     res.header("Authorization", "Bearer " + headers.accessToken);
     res.header("RefreshToken", "Bearer " + headers.refreshToken);
 }
+
+export function removeRefreshToken(userId: string) {
+    redisCache.removeRefreshToken(userId);
+}
