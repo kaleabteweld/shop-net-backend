@@ -3,7 +3,10 @@ import Jwt from 'jsonwebtoken'
 import { Response } from "express";
 import { TokenSecret } from "../../Util";
 import { TokenType, UserType } from "./jwt.types";
-import MongodbCache from '../cache/mongodb';
+import RedisCache from '../cache/redis';
+
+
+const redisCache = RedisCache.getInstance();
 
 export async function MakeTokens(user: any, userType: UserType) {
 
@@ -15,11 +18,11 @@ export async function MakeTokens(user: any, userType: UserType) {
         const accessToken = Jwt.sign({ ...user, type: userType }, tokenKey, { expiresIn: "2h", });
         const refreshToken = Jwt.sign({ ...user }, refreshKey, { expiresIn: "2w", });
 
-        await MongodbCache.removeRefreshToken(user.id);
+        await redisCache.removeRefreshToken(user.id);
 
         const ttl: number = (Jwt.decode(refreshToken) as Jwt.JwtPayload).exp ?? 145152000;
 
-        await MongodbCache.addRefreshToken(refreshToken, user.id, ttl);
+        await redisCache.addRefreshToken(refreshToken, user.id, ttl);
 
 
         return { accessToken, refreshToken }
@@ -71,7 +74,7 @@ export async function verifyRefreshToken<T>(_refreshToken: string, userTye: User
         const userId = (decoded?.payload as Jwt.JwtPayload).id;
         if (userId == undefined) throw Error("No Valid Token");
 
-        const refreshToken = await MongodbCache.getRefreshToken(userId);
+        const refreshToken = await redisCache.getRefreshToken(userId);
 
         if ((refreshToken === undefined || refreshToken === null) || _refreshToken !== refreshToken) throw Error("No Valid Token [Cache]")
 

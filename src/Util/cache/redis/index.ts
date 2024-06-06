@@ -1,47 +1,95 @@
-import { createClient } from 'redis';
+import { createClient, RedisClientType } from 'redis';
 import { errorResponse } from '../../../Types/error';
 
-export default class Cache {
-    public static client = createClient({
-        url: process.env.REDIS_URL
-    });
+export default class RedisCache {
+    private static instance: RedisCache;
+    private static client: RedisClientType;
 
-    static async connect() {
-        Cache.client.on('error', (err: any) => console.log('[+] Redis Client Error', err));
-        await Cache.client.connect();
-        console.log("[+] Redis Client Connected")
-    }
-
-    static async disconnect() {
-        await Cache.client.quit();
-    }
-
-    static async addRefreshToken(refreshToken: string, userId: string, ttl: number) {
-        const temp = await Cache.client.set(userId.toString(), refreshToken, {
-            EX: ttl
+    private constructor() {
+        RedisCache.client = createClient({
+            url: process.env.REDIS_URL
         });
-    }
-    static async getRefreshToken(userId: string) {
-        return await Cache.client.get(userId.toString());
-    }
-    static async removeRefreshToken(userId: string) {
-        return await Cache.client.del(userId.toString());
+        RedisCache.client.on('error', (err: any) => console.error('[+] Redis Client Error', err));
     }
 
+    public static getInstance(): RedisCache {
+        if (!RedisCache.instance) {
+            RedisCache.instance = new RedisCache();
+        }
+        return RedisCache.instance;
+    }
 
-
-
-    static async run(fn: Function, onError?: Function) {
+    public async connect() {
         try {
-            return await fn();
+            await RedisCache.client.connect();
+            console.log("[+] Redis Client Connected");
         } catch (error: any) {
-            if (onError !== undefined) onError(error);
-            console.log("[-] Redis Error ", error)
             const _error: errorResponse = {
-                msg: error.msg ?? "Redis Error",
+                msg: error.msg ?? "Redis Connection Error",
                 statusCode: 500,
                 type: "Redis",
-            }
+            };
+            console.error("[-] Redis Connection Error: ", error);
+            throw _error;
+        }
+    }
+
+    public async disconnect() {
+        try {
+            await RedisCache.client.quit();
+            console.log("[+] Redis Client Disconnected");
+        } catch (error: any) {
+            const _error: errorResponse = {
+                msg: error.msg ?? "Redis Disconnection Error",
+                statusCode: 500,
+                type: "Redis",
+            };
+            console.error("[-] Redis Disconnection Error: ", error);
+            throw _error;
+        }
+    }
+
+    public async addRefreshToken(refreshToken: string, userId: string, ttl: number) {
+        try {
+            await RedisCache.client.set(userId.toString(), refreshToken, {
+                EX: ttl
+            });
+        } catch (error: any) {
+            const _error: errorResponse = {
+                msg: error.msg ?? "Redis Error adding refresh token",
+                statusCode: 500,
+                type: "Redis",
+            };
+            console.error("[-] Redis Error adding refresh token: ", error);
+            throw _error;
+        }
+    }
+
+    public async getRefreshToken(userId: string) {
+        try {
+            return await RedisCache.client.get(userId.toString());
+        } catch (error: any) {
+            const _error: errorResponse = {
+                msg: error.msg ?? "Redis Error getting refresh token",
+                statusCode: 500,
+                type: "Redis",
+            };
+            console.error("[-] Redis Error getting refresh token: ", error);
+            throw _error;
+        }
+    }
+
+    public async removeRefreshToken(userId: string) {
+        try {
+            await RedisCache.client.del(userId.toString());
+        } catch (error: any) {
+            const _error: errorResponse = {
+                msg: error.msg ?? "Redis Error removing refresh token",
+                statusCode: 500,
+                type: "Redis",
+            };
+            console.error("[-] Redis Error removing refresh token: ", error);
+            throw _error;
         }
     }
 }
