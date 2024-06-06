@@ -41,8 +41,8 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/node_app:latest
-        cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/node_app:cache
+        tags: ${{ secrets.DOCKER_USERNAME }}/shop:latest
+        cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/shop:cache
         cache-to: type=inline,mode=max
 
     - name: Logout from Docker Hub
