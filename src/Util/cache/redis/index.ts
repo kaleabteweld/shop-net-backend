@@ -22,7 +22,6 @@ export default class RedisCache {
     public async connect() {
         try {
             await RedisCache.client.connect();
-            console.log("[+] Redis Client Connected");
         } catch (error: any) {
             const _error: errorResponse = {
                 msg: error.msg ?? "Redis Connection Error",

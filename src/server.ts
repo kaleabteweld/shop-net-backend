@@ -22,4 +22,6 @@ mongoose.connect(process.env.DATABASE_URL ?? "").catch((error) => {
 const redisCache = RedisCache.getInstance();
 redisCache.connect().catch((error) => {
     console.log("[-] Redis Connection Error", error);
+}).then(() => {
+    console.log("[+] Redis Connected");
 });
