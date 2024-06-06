@@ -1,9 +1,9 @@
 import axios from "axios";
-import { TokenType, UserType } from "../Types";
 import { errorResponse } from "../Types/error";
 import crypto from 'crypto';
 import { ValidationErrorFactory } from "../Types/error";
 import Joi from "joi";
+import { TokenType, UserType } from "./jwt/jwt.types";
 
 export function TokenSecret(userType: UserType, tokenType: TokenType) {
     if (tokenType == TokenType.accessToken) {

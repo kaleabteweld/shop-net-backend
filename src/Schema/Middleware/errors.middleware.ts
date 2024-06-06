@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { ValidationErrorFactory } from "../../Util/Factories";
+import { ValidationErrorFactory } from "../../Types/error";
 
 export default function mongooseErrorMiddleware(error: any, doc: Document, next: mongoose.CallbackWithoutResultAndOptionalError) {
     if (error) {
