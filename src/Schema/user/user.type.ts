@@ -31,7 +31,7 @@ export interface IUserMethods {
 
 export interface IUserDocument extends IUser, IUserMethods, mongoose.Document { }
 
-export interface UserModel extends mongoose.Model<IUserDocument> {
+export interface IUserModel extends mongoose.Model<IUserDocument> {
     validator<T>(userInput: T, schema: Joi.ObjectSchema<T>): Promise<any>
     getUserByEmail(email: string): Promise<IUserDocument>
     getUserById(_id: string): Promise<IUserDocument>

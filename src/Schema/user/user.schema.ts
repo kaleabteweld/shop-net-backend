@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 import { mongooseErrorPlugin } from '../Middleware/errors.middleware';
-import { EStatus, IUser, IUserMethods, UserModel } from './user.type';
+import { EStatus, IUser, IUserMethods, IUserModel } from './user.type';
 import { checkPassword, encryptPassword, getUserByEmail, getUserById, removeByID, setStatus, update, validator } from './user.extended';
 
-export const userSchema = new mongoose.Schema<IUser, UserModel, IUserMethods>({
+export const userSchema = new mongoose.Schema<IUser, IUserModel, IUserMethods>({
 
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
@@ -50,6 +50,6 @@ userSchema.virtual('full_name').get(function () {
 
 userSchema.plugin<any>(mongooseErrorPlugin);
 
-const UserModel = mongoose.model<IUser, UserModel>('User', userSchema);
+const UserModel = mongoose.model<IUser, IUserModel>('User', userSchema);
 
 export default UserModel;
