@@ -10,7 +10,7 @@ const ProductSchema = new mongoose.Schema<IProduct, IProductModel, IProductMetho
     price: { type: Number, required: true },
     amount: { type: Number, default: 0, min: 0 },
     brand: { type: String },
-    modelId: { type: String },
+    itemModel: { type: String },
 
     images: [ImageSchema],
     condition: {
@@ -24,6 +24,9 @@ const ProductSchema = new mongoose.Schema<IProduct, IProductModel, IProductMetho
         required: true
     },
     seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    categorys: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }],
+    types: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }],
+    for: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }]
 
 }, {
     timestamps: true
@@ -32,3 +35,4 @@ const ProductSchema = new mongoose.Schema<IProduct, IProductModel, IProductMetho
 ProductSchema.plugin<any>(mongooseErrorPlugin)
 
 const ProductModel = mongoose.model<IProduct, IProductModel>('Product', ProductSchema);
+export default ProductModel;
