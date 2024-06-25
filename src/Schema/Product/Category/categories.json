@@ -1,0 +1,323 @@
+{
+    "Others": {},
+    "Electronics & Home Appliances": {
+        "children": {
+            "Audio & Video": [
+                "Video Streaming",
+                "DVD",
+                "Home Theater",
+                "Stereos",
+                "Speakers",
+                "Sound Systems",
+                "Microphones",
+                "Radios"
+            ],
+            "TV": [
+                "A-Tec",
+                "JVC",
+                "DLC",
+                "DAEWOO",
+                "PANASONIC",
+                "SAMSUNG",
+                "TECHNOSAT",
+                "SANYO",
+                "TOSHIBA",
+                "SONY",
+                "TLC",
+                "SHARP",
+                "THOMSON",
+                "PHILIPS",
+                "LG",
+                "MITSUBISHI",
+                "SONIC",
+                "NIKAI",
+                "HAIER",
+                "Other"
+            ],
+            "Computer": [
+                "APPLE",
+                "ASUS",
+                "HP",
+                "HUAWEI",
+                "LENOVO",
+                "TOSHIBA",
+                "MSI",
+                "DELL",
+                "ACER",
+                "Other"
+            ],
+            "Tablets": [
+                "APPLE",
+                "ASUS",
+                "HP",
+                "HUAWEI",
+                "LENOVO",
+                "TOSHIBA",
+                "MSI",
+                "DELL",
+                "ACER",
+                "Other"
+            ],
+            "Video Game Consoles": [
+                "Playstation",
+                "Xbox",
+                "Other"
+            ],
+            "Home Appliances": [
+                "Oven",
+                "Refrigerator",
+                "Washing Machine",
+                "Dishwasher",
+                "Other"
+            ],
+            "Camera & Lens": [
+                "Canon",
+                "Sony",
+                "Nikon",
+                "Kodak",
+                "Fujifilm",
+                "Other"
+            ],
+            "Others": []
+        }
+    },
+    "Mobile Phones & Accessories": {
+        "children": {
+            "Mobile Phones": [
+                "Alcatel",
+                "Apple",
+                "ASUS",
+                "Blackberry",
+                "Dell",
+                "HP",
+                "HTC",
+                "LG",
+                "Motorola",
+                "Other"
+            ],
+            "Mobile Accessories": []
+        }
+    },
+    "Vehicles": {
+        "children": {
+            "Alfa": [
+                "Giulia", "Stelvio", "Giulietta", "4C", "8C", "Mito", "GT", "159", "Spider", "SZ"
+            ],
+            "MG": [
+                "MG3", "MG5", "MG ZS", "MG HS", "MG 6", "MG TF", "MG ZT", "MG XPower SV", "MG F", "MG 7"
+            ],
+            "Audi": [
+                "A3", "A4", "A6", "A8", "Q3", "Q5", "Q7", "TT", "R8", "RS4"
+            ],
+            "MINI": [
+                "Cooper", "Countryman", "Clubman", "Paceman", "Convertible", "Coupe", "Roadster", "John Cooper Works", "Electric", "One"
+            ],
+            "Brilliance": [
+                "H220", "H230", "H320", "H330", "H530", "V3", "V5", "V6", "FRV", "FSV"
+            ],
+            "Mazda": [
+                "Mazda3", "Mazda6", "CX-3", "CX-5", "CX-9", "MX-5", "RX-7", "RX-8", "MPV", "Mazda2"
+            ],
+            "BYD": [
+                "e2", "e3", "e5", "F3", "F5", "S2", "S3", "S5", "Song", "Tang"
+            ],
+            "Mercedes-Benz": [
+                "A-Class", "C-Class", "E-Class", "S-Class", "CLA", "GLA", "GLC", "GLE", "GLS", "AMG GT"
+            ],
+            "Chery": [
+                "Arrizo 5", "Arrizo 7", "Arrizo 8", "Tiggo 3", "Tiggo 4", "Tiggo 5", "Tiggo 7", "Tiggo 8", "QQ", "eQ"
+            ],
+            "Mitsubishi": [
+                "Lancer", "Outlander", "Eclipse Cross", "ASX", "Pajero", "Montero", "Mirage", "Attrage", "Delica", "RVR"
+            ],
+            "Chevrolet": [
+                "Cruze", "Malibu", "Impala", "Trax", "Equinox", "Blazer", "Traverse", "Tahoe", "Suburban", "Camaro"
+            ],
+            "Nissan": [
+                "Altima", "Maxima", "Sentra", "Versa", "Juke", "Kicks", "Rogue", "Murano", "Pathfinder", "Armada"
+            ],
+            "Chrysler": [
+                "300", "Pacifica", "Voyager", "Aspen", "Crossfire", "Sebring", "Concorde", "PT Cruiser", "Saratoga", "Windsor"
+            ],
+            "Opel": [
+                "Corsa", "Astra", "Insignia", "Mokka", "Crossland", "Grandland", "Adam", "Karl", "Zafira", "Antara"
+            ],
+            "Citroen": [
+                "C3", "C4", "C5", "C6", "C1", "C2", "Berlingo", "Jumpy", "SpaceTourer", "DS3"
+            ],
+            "Peugeot": [
+                "208", "308", "408", "508", "108", "2008", "3008", "5008", "Expert", "Traveller"
+            ],
+            "Daewoo": [
+                "Matiz", "Lanos", "Nexia", "Espero", "Cielo", "Kalos", "Nubira", "Magnus", "Tacuma", "Gentra"
+            ],
+            "Porsche": [
+                "911", "Cayman", "Boxster", "Panamera", "Cayenne", "Macan", "Taycan", "918 Spyder", "959", "944"
+            ],
+            "Daihatsu": [
+                "Mira", "Move", "Sirion", "Boon", "Terios", "Copen", "Rocky", "Be-go", "Hijet", "Atrai"
+            ],
+            "Proton": [
+                "Saga", "Persona", "Iriz", "Preve", "Suprima S", "X70", "X50", "Exora", "Wira", "Satria"
+            ],
+            "Dodge": [
+                "Challenger", "Charger", "Durango", "Journey", "Grand Caravan", "Caliber", "Viper", "Avenger", "Ram", "Nitro"
+            ],
+            "Renault": [
+                "Clio", "Megane", "Scenic", "Kadjar", "Captur", "Talisman", "Koleos", "Zoe", "Twingo", "Fluence"
+            ],
+            "Fiat": [
+                "500", "Panda", "Tipo", "Punto", "Doblo", "500X", "500L", "124 Spider", "Qubo", "Freemont"
+            ],
+            "Romeo": [
+                "Giulietta", "Stelvio", "4C", "8C", "MiTo", "Giulia", "GT", "156", "159", "Brera"
+            ],
+            "Ford": [
+                "Focus", "Fiesta", "Mondeo", "Mustang", "Escape", "Explorer", "Edge", "Fusion", "Ranger", "F-150"
+            ],
+            "Rover": [
+                "75", "45", "25", "200", "400", "800", "600", "100", "Mini", "Metro"
+            ],
+            "Geely": [
+                "Emgrand EC7", "Emgrand X7", "Emgrand 7", "Emgrand GS", "Emgrand GL", "Vision X1", "Vision S1", "Atlas", "Coolray", "Azkarra"
+            ],
+            "Saipa": [
+                "Tiba", "Pride", "Saina", "Quick", "Nasim", "Bardo", "LX", "Miniator", "Zamyad", "Saba"
+            ],
+            "GMC": [
+                "Sierra", "Yukon", "Canyon", "Acadia", "Terrain", "Savana", "Envoy", "Jimmy", "Typhoon", "Suburban"
+            ],
+            "Seat": [
+                "Ibiza", "Leon", "Ateca", "Arona", "Toledo", "Tarraco", "Mii", "Alhambra", "Exeo", "Cordoba"
+            ],
+            "Honda": [
+                "Civic", "Accord", "CR-V", "Pilot", "Fit", "Crosstour", "Odyssey", "HR-V", "Ridgeline", "Insight"
+            ],
+            "Skoda": [
+                "Octavia", "Superb", "Kodiaq", "Karoq", "Rapid", "Yeti", "Citigo", "Fabia", "Scala", "Felicia"
+            ],
+            "Hummer": [
+                "H1", "H2", "H3", "H3T", "H4", "H5", "H6", "H7", "H8", "H9"
+            ],
+            "Speranza": [
+                "Tiggo", "Envy", "A620", "A516", "A113", "A113T", "A516i", "A213", "A620", "Tiggo 5", "Tiggo 8"
+            ],
+            "Hyundai": [
+                "Elantra", "Sonata", "Tucson", "Santa Fe", "Kona", "Accent", "Venue", "Veloster", "Ioniq", "Nexo", "Grand i10", "Avante", "Starex"
+            ],
+            "Ssang Yong": [
+                "Tivoli", "Korando", "Rexton", "Actyon", "XLV", "Musso", "Rodius", "Chairman", "Kallista", "C200"
+            ],
+            "Infiniti": [
+                "Q50", "Q60", "Q70", "QX30", "QX50", "QX60", "QX70", "QX80", "EX", "FX"
+            ],
+            "Subaru": [
+                "Impreza", "Legacy", "Outback", "Forester", "Crosstrek", "BRZ", "WRX", "Ascent", "XV", "Traviq"
+            ],
+            "Isuzu": [
+                "D-Max", "MU-X", "Trooper", "Rodeo", "Ascender", "VehiCross", "Amigo", "Hombre", "P'up", "Wizard"
+            ],
+            "Suzuki": [
+                "Swift", "Vitara", "Jimny", "SX4", "Ciaz", "Baleno", "S-Cross", "Alto", "Ignis", "Grand Vitara", "Spresso"
+            ],
+            "Jaguar": [
+                "F-Type", "XE", "XF", "XJ", "E-Pace", "F-Pace", "I-Pace", "S-Type", "X-Type", "Mark 2"
+            ],
+            "Toyota": [
+                "Camry", "Corolla", "Minibus", "Rav4", "Highlander", "Prius", "Sienna", "Tundra", "Tacoma", "4Runner", "Land Cruiser", "Yaris"
+            ],
+            "Jeep": [
+                "Wrangler", "Cherokee", "Grand Cherokee", "Renegade", "Compass", "Patriot", "Commander", "Wagoneer", "Gladiator", "Scrambler"
+            ],
+            "Volkswagen": [
+                "Golf", "Passat", "Jetta", "Tiguan", "Atlas", "Arteon", "T-Roc", "Up!", "Polo", "Touareg"
+            ],
+            "Lada": [
+                "Vesta", "Granta", "Niva", "XRAY", "Kalina", "Largus", "4x4", "Priora", "Samara", "2107"
+            ],
+            "Volvo": [
+                "S60", "S90", "V60", "V90", "XC40", "XC60", "XC90", "C30", "C70", "V40"
+            ],
+            "Land Rover": [
+                "Range Rover", "Range Rover Sport", "Range Rover Evoque", "Discovery", "Discovery Sport", "Defender", "Freelander", "Velar", "Series I", "Series II"
+            ],
+            "Lexus": [
+                "IS", "ES", "GS", "LS", "UX", "NX", "RX", "LX", "RC", "LC"
+            ]
+        },
+        "types": [
+            "Sale",
+            "Rent"
+        ]
+    },
+    "Property": {
+        "children": {
+            "Apartment": [],
+            "Condominium": [],
+            "Land": [],
+            "Villa": [],
+            "Shops": [],
+            "Studio": [],
+            "Offices": [],
+            "Real_Estate": [],
+            "Store": [],
+            "Farm": [],
+            "Gated_Community": [],
+            "Gathering_Heals": [],
+            "Garage": []
+        },
+        "types": [
+            "Sale",
+            "Rent",
+            "Airbnb"
+        ]
+    },
+    "Home & Garden": {
+        "children": {
+            "Furniture": [
+                    "Bed",
+                    "Sofa",
+                    "Kitchen Cabinet",
+                    "Office ",
+                    "Dinning Table Set",
+                    "Cupboard",
+                    "Others"
+                ],
+            "Kitchenware": [],
+            "Decoration": [],
+            "Garden": [],
+            "Accessories": [],
+            "Outdoor": [],
+            "Others": []
+        }
+    },
+    "Fashion & Beauty": {
+        "children": {
+            "Clothes": [],
+            "Jewelry": [],
+            "Shoes": [],
+            "Bags": [],
+            "Cosmetics": [
+                "Beauty Products",
+                "Hair Products",
+                "Skin Care Products",
+                "Perfume",
+                "Deodorant",
+                "Others"
+            ],
+            "Others": []
+        },
+        "types": [
+            "Men's",
+            "Women's",
+            "Kid's"
+        ]
+    },
+    "Sporting Goods & Bikes": {
+        "children": {
+            "Sporting Goods": [],
+            "Bikes": [],
+            "Others": []
+        }
+    }
+}
