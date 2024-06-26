@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { ECondition, EDeliveryMethod, IProduct, IProductMethods, IProductModel } from "./product.type";
 import ImageSchema from "./Image/image.schema";
 import { mongooseErrorPlugin } from "../Middleware/errors.middleware";
+import { getById, removeByID, update, validator } from "./product.extended";
 
 
 const ProductSchema = new mongoose.Schema<IProduct, IProductModel, IProductMethods>({
@@ -29,7 +30,13 @@ const ProductSchema = new mongoose.Schema<IProduct, IProductModel, IProductMetho
     for: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }]
 
 }, {
-    timestamps: true
+    timestamps: true,
+    statics: {
+        validator,
+        getById,
+        removeByID,
+        update
+    }
 });
 
 ProductSchema.plugin<any>(mongooseErrorPlugin)

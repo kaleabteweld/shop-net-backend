@@ -11,7 +11,6 @@ export interface IImage extends mongoose.Document {
 }
 
 export interface IImageMethods {
-
 }
 
 export interface IImageDocument extends IImage, IImageMethods, mongoose.Document { }
@@ -21,3 +20,7 @@ export interface IImageModel extends mongoose.Model<IImageDocument> {
 
 
 
+export interface INewImage extends mongoose.Document {
+    filename: string
+    data: Buffer
+}

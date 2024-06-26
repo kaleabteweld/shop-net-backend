@@ -1,6 +1,6 @@
 import Joi from "joi";
 import mongoose from "mongoose";
-import { IImage } from "./Image/image.type";
+import { IImage, INewImage } from "./Image/image.type";
 import { IUser } from "../user/user.type";
 import { ICategory } from "./Category/category.type";
 
@@ -55,6 +55,9 @@ export interface IProductDocument extends IProduct, IProductMethods, mongoose.Do
 
 export interface IProductModel extends mongoose.Model<IProductDocument> {
     validator<T>(userInput: T, schema: Joi.ObjectSchema<T>): Promise<any>
+    getById(this: mongoose.Model<IProduct>, _id: string): Promise<IProduct>
+    removeByID(this: mongoose.Model<IProduct>, _id: string): Promise<void>
+    update(this: mongoose.Model<IProduct>, _id: string, newProduct: IProductCreateFrom, populatePath?: string | string[]): Promise<IProduct | null>
 }
 
 export interface IProductCreateFrom {
@@ -64,9 +67,12 @@ export interface IProductCreateFrom {
     amount: number;
     brand: string;
     itemModel: string;
-    images: IImage[];
+    images: INewImage[];
     condition: TCondition;
     deliveryMethod: TDeliveryMethod;
+    categorys: string[];
+    types: string[];
+    for: string[];
 }
 
 export interface IProductUpdateFrom extends Partial<IProductCreateFrom> {

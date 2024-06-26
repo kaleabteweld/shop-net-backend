@@ -17,6 +17,7 @@ export interface IUser extends mongoose.Document {
     full_name: string;
     phone_number: string;
     status: TStatus;
+    postedProductsCount: number; //TODO add to schema
     postedProducts: mongoose.Schema.Types.ObjectId[];
     viewedProducts: mongoose.Schema.Types.ObjectId[];
     chats: mongoose.Schema.Types.ObjectId[];
