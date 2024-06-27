@@ -20,9 +20,13 @@ export interface IAdmin extends mongoose.Document {
 export interface IAdminMethods {
     encryptPassword(this: IAdmin, password?: string): Promise<String>
     checkPassword(this: IAdmin, password: string): Promise<boolean>
+    // checkStatusForAccess(this: IAdmin): Promise<IAdmin | null>
 }
 
-export interface IAdminDocument extends IAdmin, IAdminMethods, mongoose.Document { }
+export interface IAdminDocument extends IAdmin, IAdminMethods, mongoose.Document {
+    checkStatusForAccess: () => mongoose.Query<any, mongoose.Document<IAdmin>>;
+
+}
 
 export interface IAdminModel extends mongoose.Model<IAdminDocument> {
     validator<T>(userInput: T, schema: Joi.ObjectSchema<T>): Promise<any>

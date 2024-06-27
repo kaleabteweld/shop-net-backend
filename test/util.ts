@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { MongoMemoryServer } from 'mongodb-memory-server-core';
 import dotenv from 'dotenv';
 import CategoryModel from "../src/Schema/Product/Category/category.schema";
+import { AdminController } from "../src/Routes/Admin";
 
 dotenv.config({ path: `.env.development` });
 
@@ -12,6 +13,7 @@ export const connectDB = async () => {
     const uri = mongo.getUri();
     await mongoose.connect(uri);
     await CategoryModel.seed()
+    await AdminController.seed()
 };
 
 export const dropDB = async () => {

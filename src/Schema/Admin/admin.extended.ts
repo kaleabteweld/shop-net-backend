@@ -69,7 +69,7 @@ export async function getByEmail(this: mongoose.Model<IAdmin>, email: string): P
 
 export async function getById(this: mongoose.Model<IAdmin>, _id: string): Promise<IAdmin> {
     try {
-        const user = await this.findById(new mongoose.Types.ObjectId(_id));
+        const user = await this.findById(new mongoose.Types.ObjectId(_id)).checkStatusForAccess();
         if (user == null) {
             throw ValidationErrorFactory({
                 msg: "User not found",
@@ -139,3 +139,28 @@ export async function setStatus(this: mongoose.Model<IAdmin>, _id: string, statu
         throw error;
     }
 }
+
+export async function checkStatusForAccess(this: mongoose.Query<any, mongoose.Document<IAdmin, any, any>, {}, mongoose.Document<IAdmin, any, any>>): Promise<IAdmin | null> {
+    return this.where({ status: EStatus.active });
+}
+
+// export async function isParentAdmin(this: IAdmin, adminId: string) {
+//     try {
+//         if (this.parent == null) throw ValidationErrorFactory({
+//             msg: "",
+//             statusCode: 403,
+//             type: "Validation"
+//         }, "")
+//         if (new mongoose.Types.ObjectId(adminId).equals(this.parent._id as any)) return true
+
+//     } catch (error) {
+//         if (error instanceof BSONError) {
+//             throw ValidationErrorFactory({
+//                 msg: "Input must be a 24 character hex string, 12 byte Uint8Array, or an integer",
+//                 statusCode: 400,
+//                 type: "validation",
+//             }, "id");
+//         }
+//         throw error;
+//     }
+// }

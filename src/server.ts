@@ -3,6 +3,8 @@ import { makeServer } from './Util/Factories';
 import dotenv from 'dotenv';
 import RedisCache from "./Util/cache/redis";
 import CategoryModel from "./Schema/Product/Category/category.schema";
+import AdminModel from "./Schema/Admin/admin.schema";
+import { AdminController } from "./Routes/Admin";
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV?.trim()}` });
 console.log(`[+] running on ${process.env.NODE_ENV?.trim()} mode`)
@@ -22,6 +24,11 @@ mongoose.connect(process.env.DATABASE_URL ?? "").catch((error) => {
         console.log("[-] Error Seeding Categories", error);
     }).then(() => {
         console.log("[+] Categories Seeded");
+    });
+    AdminController.seed().catch((error) => {
+        console.log("[-] Error Seeding Admin", error);
+    }).then(() => {
+        console.log("[+] Admin Seeded");
     });
 });
 
