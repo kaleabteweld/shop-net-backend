@@ -55,11 +55,13 @@ export function validator<T>(userInput: T, schema: Joi.ObjectSchema<T>) {
     return MakeValidator<T>(schema, userInput);
 }
 
-export async function getByEmail(this: mongoose.Model<IAdmin>, email: string): Promise<IAdmin> {
-    const user = await this.findOne({ email });
+export async function getByEmail(this: mongoose.Model<IAdmin>, email: string, withActiveStatus: boolean = true): Promise<IAdmin> {
+    let user: any = this.findOne({ email });
+    if (withActiveStatus) await user.withActiveStatus();
+    user = await user.exec();
     if (user == null) {
         throw ValidationErrorFactory({
-            msg: "Invalid Email or Password",
+            msg: "Invalid Email, Password or is't active",
             statusCode: 404,
             type: "Validation"
         }, "")
@@ -67,12 +69,14 @@ export async function getByEmail(this: mongoose.Model<IAdmin>, email: string): P
     return user;
 }
 
-export async function getById(this: mongoose.Model<IAdmin>, _id: string): Promise<IAdmin> {
+export async function getById(this: mongoose.Model<IAdmin>, _id: string, withActiveStatus: boolean = true): Promise<IAdmin> {
     try {
-        const user = await this.findById(new mongoose.Types.ObjectId(_id)).checkStatusForAccess();
+        let user: any = this.findById(new mongoose.Types.ObjectId(_id))
+        if (withActiveStatus) await user.withActiveStatus();
+        user = await user.exec();
         if (user == null) {
             throw ValidationErrorFactory({
-                msg: "User not found",
+                msg: "User not found or is't active",
                 statusCode: 404,
                 type: "Validation"
             }, "_id")
@@ -140,9 +144,9 @@ export async function setStatus(this: mongoose.Model<IAdmin>, _id: string, statu
     }
 }
 
-export async function checkStatusForAccess(this: mongoose.Query<any, mongoose.Document<IAdmin, any, any>, {}, mongoose.Document<IAdmin, any, any>>): Promise<IAdmin | null> {
-    return this.where({ status: EStatus.active });
-}
+// export async function withActiveStatus(this: mongoose.Query<any, mongoose.Document<IAdmin, any, any>, {}, mongoose.Document<IAdmin, any, any>>): Promise<IAdmin | null> {
+//     return this.where({ status: EStatus.active });
+// }
 
 // export async function isParentAdmin(this: IAdmin, adminId: string) {
 //     try {

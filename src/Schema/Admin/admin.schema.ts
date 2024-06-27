@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { mongooseErrorPlugin } from '../Middleware/errors.middleware';
-import { checkPassword, encryptPassword, getByEmail, getById, removeByID, update, validator, checkStatusForAccess } from './admin.extended';
+import { checkPassword, encryptPassword, getByEmail, getById, removeByID, update, validator } from './admin.extended';
 import { EStatus, IAdmin, IAdminMethods, IAdminModel } from './admin.type';
 
 export const adminSchema = new mongoose.Schema<IAdmin, IAdminModel, IAdminMethods>({
@@ -36,7 +36,7 @@ export const adminSchema = new mongoose.Schema<IAdmin, IAdminModel, IAdminMethod
         checkPassword,
     },
     query: {
-        checkStatusForAccess: function () {
+        withActiveStatus: function () {
             return this.where({ status: EStatus.active });
         }
     }

@@ -23,12 +23,12 @@ export interface IAdminMethods {
     // checkStatusForAccess(this: IAdmin): Promise<IAdmin | null>
 }
 
-export interface IAdminDocument extends IAdmin, IAdminMethods, mongoose.Document {
-    checkStatusForAccess: () => mongoose.Query<any, mongoose.Document<IAdmin>>;
+export interface IAdminDocument extends IAdmin, IAdminMethods, mongoose.Document { }
 
+export interface IAdminQueryHelpers {
+    withActiveStatus(): mongoose.Query<any, IAdminDocument> & IAdminQueryHelpers;
 }
-
-export interface IAdminModel extends mongoose.Model<IAdminDocument> {
+export interface IAdminModel extends mongoose.Model<IAdminDocument, IAdminQueryHelpers> {
     validator<T>(userInput: T, schema: Joi.ObjectSchema<T>): Promise<any>
     getByEmail(email: string): Promise<IAdminDocument>
     getById(_id: string): Promise<IAdminDocument>

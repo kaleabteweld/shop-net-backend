@@ -24,7 +24,6 @@ export default class AdminController {
         await AdminModel.validator(from, adminLogInSchema);
         const user = await AdminModel.getByEmail(from.email);
         await user!.checkPassword(from.password);
-        await user!.checkStatusForAccess();
 
         const { accessToken, refreshToken } = await MakeTokens(user!.toJSON(), UserType.user);
         return { body: user!.toJSON(), header: { accessToken, refreshToken } }
@@ -35,7 +34,6 @@ export default class AdminController {
 
         const tokenAdmin = await verifyRefreshToken<IAdmin>(_refreshToken, UserType.user);
         const user = await AdminModel.getById(tokenAdmin!.id);
-        await user!.checkStatusForAccess();
         const { accessToken, refreshToken } = await MakeTokens(user!.toJSON(), UserType.user);
 
         return { body: undefined, header: { accessToken, refreshToken } }
@@ -51,7 +49,6 @@ export default class AdminController {
 
         await AdminModel.validator(_user, adminUpdateSchema)
         const user = await AdminModel.getById(userId);
-        await user!.checkStatusForAccess();
 
         const updateAdmin = await AdminModel.update(user.id, _user)
         return { body: (updateAdmin as any).toJSON() }
@@ -63,8 +60,7 @@ export default class AdminController {
 
     static async removeById(_user: IAdmin): Promise<IResponseType<{} | null>> {
         const user = await AdminModel.getById(_user._id as any);
-        await user!.checkStatusForAccess();
-        await AdminModel.removeByID(event?.id)
+        await AdminModel.removeByID(user?._id as any);
 
         return { body: {} };
 
