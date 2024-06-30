@@ -85,7 +85,7 @@ export function authorization(userTypes: UserType[]) {
         const userType = req["userType"];
         if (userType === undefined || userType === null) throw Error("No Valid Token");
 
-        if (userTypes.includes(userType)) {
+        if (!userTypes.includes(userType)) {
             let msg;
             if (userTypes.length === 1) {
                 msg = `${userTypes[0]} Only`;

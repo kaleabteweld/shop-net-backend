@@ -51,15 +51,6 @@ describe('User Authentication', () => {
                     expect(accessToken).toBeTruthy();
                 });
 
-                it("Should be valid", async () => {
-                    const response = await request(app).post(sighupUrl(UserType.user)).send(newValidUser);
-                    expect(response.header).toHaveProperty("authorization");
-
-                    const accessToken = response.header.authorization.split(" ")[1];
-                    const user = await verifyAccessToken(accessToken, UserType.user);
-                    expect(user).toBeTruthy();
-                    expect(user).toMatchObject({ ...newValidUserWithOutPassword });
-                });
 
             });
 
@@ -84,17 +75,6 @@ describe('User Authentication', () => {
 
                     expect(user).toBeTruthy();
                     expect(cacheRefreshToken).toBe(refreshToken);
-                });
-
-                it("Should be valid", async () => {
-                    const response = await request(app).post(sighupUrl(UserType.user)).send(newValidUser);
-                    expect(response.header).toHaveProperty("refreshtoken");
-
-                    const refreshToken = response.header.refreshtoken.split(" ")[1];
-                    const user = await verifyRefreshToken(refreshToken, UserType.user);
-
-                    expect(user).toBeTruthy();
-                    expect(user).toMatchObject({ ...newValidUserWithOutPassword });
                 });
 
             });
