@@ -15,7 +15,7 @@ export default class AdminController {
         const user = await new AdminModel({ ..._user, parent: ParentAdmin._id });
         await user!.encryptPassword();
         await user.save();
-        const { accessToken, refreshToken } = await MakeTokens(user.toJSON(), UserType.user);
+        const { accessToken, refreshToken } = await MakeTokens(user.toJSON(), UserType.admin);
 
         return { body: user.toJSON(), header: { accessToken, refreshToken } }
     }
@@ -25,22 +25,22 @@ export default class AdminController {
         const user = await AdminModel.getByEmail(from.email);
         await user!.checkPassword(from.password);
 
-        const { accessToken, refreshToken } = await MakeTokens(user!.toJSON(), UserType.user);
+        const { accessToken, refreshToken } = await MakeTokens(user!.toJSON(), UserType.admin);
         return { body: user!.toJSON(), header: { accessToken, refreshToken } }
 
     }
 
     static async refreshToken(_refreshToken: string): Promise<IResponseWithHeaderType<undefined>> {
 
-        const tokenAdmin = await verifyRefreshToken<IAdmin>(_refreshToken, UserType.user);
+        const tokenAdmin = await verifyRefreshToken<IAdmin>(_refreshToken, UserType.admin);
         const user = await AdminModel.getById(tokenAdmin!.id);
-        const { accessToken, refreshToken } = await MakeTokens(user!.toJSON(), UserType.user);
+        const { accessToken, refreshToken } = await MakeTokens(user!.toJSON(), UserType.admin);
 
         return { body: undefined, header: { accessToken, refreshToken } }
     }
 
     static async logOut(token: string): Promise<void> {
-        const user = await verifyAccessToken<IAdmin>(token, UserType.user);
+        const user = await verifyAccessToken<IAdmin>(token, UserType.admin);
         await removeRefreshToken(user.id);
     }
 
@@ -73,5 +73,6 @@ export default class AdminController {
         })
         await bigBoss.encryptPassword();
         await bigBoss.save();
+
     }
 }

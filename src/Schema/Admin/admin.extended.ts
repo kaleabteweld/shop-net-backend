@@ -56,9 +56,10 @@ export function validator<T>(userInput: T, schema: Joi.ObjectSchema<T>) {
 }
 
 export async function getByEmail(this: mongoose.Model<IAdmin>, email: string, withActiveStatus: boolean = true): Promise<IAdmin> {
-    let user: any = this.findOne({ email });
-    if (withActiveStatus) await user.withActiveStatus();
-    user = await user.exec();
+    let query: any = this.findOne({ email });
+    if (withActiveStatus) query.withActiveStatus();
+    const user = await query.exec();
+
     if (user == null) {
         throw ValidationErrorFactory({
             msg: "Invalid Email, Password or is't active",
@@ -71,9 +72,9 @@ export async function getByEmail(this: mongoose.Model<IAdmin>, email: string, wi
 
 export async function getById(this: mongoose.Model<IAdmin>, _id: string, withActiveStatus: boolean = true): Promise<IAdmin> {
     try {
-        let user: any = this.findById(new mongoose.Types.ObjectId(_id))
-        if (withActiveStatus) await user.withActiveStatus();
-        user = await user.exec();
+        let query: any = this.findById(new mongoose.Types.ObjectId(_id))
+        if (withActiveStatus) query.withActiveStatus();
+        const user = await query.exec();
         if (user == null) {
             throw ValidationErrorFactory({
                 msg: "User not found or is't active",

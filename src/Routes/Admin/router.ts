@@ -14,13 +14,6 @@ privateAdminRouter.post("/", adminOnly, MakeErrorHandler(
     }
 ));
 
-privateAdminRouter.get("/", adminOnly, MakeErrorHandler(
-    async (req: any, res: Response) => {
-        const _user: IAdmin = req['admin'];
-        res.json(await AdminController.getById(_user));
-    }
-));
-
 privateAdminRouter.patch("/update", adminOnly, MakeErrorHandler(
     async (req: any, res: Response) => {
         const _user: IAdmin = req['admin'];

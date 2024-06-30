@@ -4,10 +4,12 @@ import { UserType } from "../src/Util/jwt/jwt.types";
 import { IUserLogInFrom, IUserSignUpFrom } from "../src/Schema/user/user.type";
 import { ECondition, EDeliveryMethod, IProductCreateFrom, TCondition, TDeliveryMethod } from "../src/Schema/Product/product.type";
 import { INewImage } from "../src/Schema/Product/Image/image.type";
+import { IAdminLogInFrom, IAdminSignUpFrom } from "../src/Schema/Admin/admin.type";
 
 
 export const sighupUrl = (user: UserType) => `/Api/v1/public/authentication/${user}/signUp`;
-export const loginUrl = (user: UserType, wallet: boolean = false) => `/Api/v1/public/authentication/${user}/login${wallet ? "/wallet" : ""}`;
+export const privateSighupUrl = (user: UserType = UserType.admin) => `/Api/v1/private/authentication/${user}/signUp`;
+export const loginUrl = (user: UserType) => `/Api/v1/public/authentication/${user}/login`;
 export const refreshTokenUrl = (user: UserType) => `/Api/v1/public/authentication/${user}/refreshToken`;
 export const logoutUrl = (user: UserType) => `/Api/v1/private/authentication/${user}/logOut`;
 
@@ -37,6 +39,17 @@ export const ValidUser1Login: IUserLogInFrom = {
     email: "test@test.com",
     password: "abcd12345",
 };
+
+export const newValidAdmin: IAdminSignUpFrom = {
+    email: "test@admin.com",
+    password: "abcd12345",
+    phone_number: "+251900000",
+}
+
+export const validAdmin1Login: IAdminLogInFrom = {
+    email: "test@admin.com",
+    password: "abcd12345",
+}
 
 
 export class ProductCreateFormBuilder {

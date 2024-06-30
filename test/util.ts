@@ -31,6 +31,9 @@ export const dropCollections = async () => {
         for (const collection of collections) {
             await collection.drop();
         }
+
+        await CategoryModel.seed()
+        await AdminController.seed()
     }
 };
 
